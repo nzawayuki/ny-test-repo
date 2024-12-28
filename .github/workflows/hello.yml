@@ -1,5 +1,5 @@
 name: GITHUB_OUTPUT
-run-name: Run by @${{ github.actor }}
+run-name: Run by @${{ github.actor }} from ${{ github.ref_name }}
 on: pull_request
 #   inputs:
 #      greeting:
