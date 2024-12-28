@@ -1,8 +1,14 @@
-name: Workflow error                       # ワークフロー名
-on: push                          # イベント（プッシュ時に起動）
-jobs:                             # ジョブの定義
-  run:                          # ジョブID
-    run-on: ubuntu-latest        # ランナー（Ubuntuで実行）
-    steps:                        # ステップの定義
-      - run: date  # シェルコマンドの実行
-      # - uses: actions/checkout@v4 # アクションの呼び出し
+name: Manual
+on:
+  workflow_dispatch:
+    inputs:
+      greeting:
+        type: string
+        default: Hello
+        required: true
+        description: A cheerful word
+jobs:
+  run:
+    runs-on: ubuntsu-latest
+    steps:
+      - run: echo "${{ inputs.greeting }}"
