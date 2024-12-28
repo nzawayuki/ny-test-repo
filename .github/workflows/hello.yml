@@ -1,6 +1,6 @@
 name: GITHUB_OUTPUT
 run-name: Run by @${{ github.actor }}
-on: push
+on: pull_request
 #   inputs:
 #      greeting:
 #        type: string
