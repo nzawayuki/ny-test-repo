@@ -10,12 +10,13 @@ on: push
 jobs:
   share:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
     steps:
-      - id: source
-        run: echo "result=Hello" >> "${GITHUB_OUTPUT}"
-      - env:
-          RESULT: ${{ steps.source.outputs.result }}
-        run: echo "${RESULT}"
-
+      - uses: action/checkout@v4
+      - run: gh pr comment "${GITHUB_HEAD_REF}" --body "Hello, ${GITHUB_ACTOR}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
