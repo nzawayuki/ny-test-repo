@@ -1,0 +1,29 @@
+name: sample-trivy-nginx
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Build an image from Dockerfile
+        run: |
+          docker build -t nginx-local:${{ github.sha }} ./docker/nginx/ 
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'nginx-local:${{ github.sha }}'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@master
+        with:
+          sarif_file: 'trivy-results.sarif'
