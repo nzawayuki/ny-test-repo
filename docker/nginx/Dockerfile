@@ -1,5 +1,5 @@
 # ベースイメージを指定、脆弱性あり　https://hub.docker.com/_/alpine/tags?page=3
-FROM alpine:3.21.2
+FROM alpine:3.20.3
  
 # nginxのインストール
 RUN apk update && apk add --no-cache nginx
