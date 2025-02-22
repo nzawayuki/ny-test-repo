@@ -29,9 +29,9 @@ jobs:
         with:
           image-ref: 'nginx-local:${{ github.sha }}'
           format: 'sarif'
-          output: 'trivy-results.sarif'
+          output: 'trivy-results_update.sarif'
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: 'trivy-results.sarif'
+          sarif_file: 'trivy-results_update.sarif'
