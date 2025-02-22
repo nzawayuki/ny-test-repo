@@ -1,5 +1,5 @@
-# ベースイメージを指定
-FROM alpine:latest
+# ベースイメージを指定、脆弱性あり　https://hub.docker.com/_/alpine/tags?page=3
+FROM alpine:3.17.5
  
 # nginxのインストール
 RUN apk update && apk add --no-cache nginx
