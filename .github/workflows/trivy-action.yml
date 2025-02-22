@@ -1,12 +1,8 @@
 name: sample-trivy-nginx
-on:
-  push:
-    branches:
-      - main
-  pull_request:
+on: workflow_dispatch
 jobs:
   build:
-    name: Build
+    name: trivy-test
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout code
